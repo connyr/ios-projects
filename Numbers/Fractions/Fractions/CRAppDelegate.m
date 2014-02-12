@@ -21,9 +21,8 @@
     CRFraction* fracA = [[CRFraction alloc] initWithNumerator:1
                                               withDenominator:4]; // 1/4
 
-    CRFraction* fracB = [[CRFraction alloc] initWithNumerator:1
+    CRFraction* fracB = [[CRFraction alloc] initWithNumerator:2
                                               withDenominator:3]; // 1/3
-    [fracA substractFraction:fracB];
 
     NSLog(@" 1/4 - 1/3 = %i/%i", fracA.numerator, fracA.denominator);
 

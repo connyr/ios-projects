@@ -24,63 +24,50 @@
     return self;
 }
 
-- (CRFraction*)
-    addFraction:(CRFraction*)anotherFraction
+- initWithDecimal:(double)decimalValue
 {
-    if (self.denominator == anotherFraction.denominator) {
-        self.numerator += anotherFraction.numerator;
-    } else {
-        // Find a common denominator with the crossproduct
-        self.numerator = (self.numerator * anotherFraction.denominator) + (self.denominator * anotherFraction.numerator);
-        self.denominator = self.denominator * anotherFraction.denominator;
-        [self normalize];
+    self = [super init];
+    if (self) {
     }
     return self;
 }
 
-- (CRFraction*)substractFraction:(CRFraction*)anotherFraction
+- (CRFraction*)addFraction:(CRFraction*)anotherFraction
 {
-    if (self.denominator == anotherFraction.denominator) {
-        self.numerator -= anotherFraction.numerator;
-    } else {
-        // Find a common denominator with the crossproduct
-        self.numerator = (self.numerator * anotherFraction.denominator) - (self.denominator * anotherFraction.numerator);
-        self.denominator = self.denominator * anotherFraction.denominator;
-    }
-    [self normalize];
+    CRFraction* result = [CRFraction fractionByAdding:anotherFraction
+                                                   to:self];
+    [self copyValuesFromFraction:result];
+    return self;
+}
+
+- (CRFraction*)subtractFraction:(CRFraction*)anotherFraction
+{
+    CRFraction* result = [CRFraction fractionBySubtracting:anotherFraction
+                                                      from:self];
+    [self copyValuesFromFraction:result];
     return self;
 }
 
 - (CRFraction*)multiplyWithFraction:(CRFraction*)anotherFraction
 {
-    self.numerator *= anotherFraction.numerator;
-    self.denominator *= anotherFraction.denominator;
-    [self normalize];
-    return self;
-}
-
-- (CRFraction*)multiplyWithWholeNumber:(NSInteger)number
-{
-    self.numerator *= number;
-    [self normalize];
+    CRFraction* result = [CRFraction fractionByMultiplying:self
+                                                      with:anotherFraction];
+    [self copyValuesFromFraction:result];
     return self;
 }
 
 - (CRFraction*)divideWithFraction:(CRFraction*)anotherFraction
 {
-    // reciprocal
-    NSInteger temp = self.numerator;
-    self.numerator = self.denominator;
-    self.denominator = temp;
-
-    return [self multiplyWithFraction:anotherFraction];
+    CRFraction* result = [CRFraction fractionByDividing:self
+                                                     by:anotherFraction];
+    [self copyValuesFromFraction:result];
+    return self;
 }
 
-- (CRFraction*)divideWithWholeNumber:(NSInteger)number
+- (double)decimalValue
 {
-    self.denominator /= number;
-    [self normalize];
-    return self;
+    double value = (double)self.numerator / self.denominator;
+    return value;
 }
 
 #pragma mark Utilities
@@ -91,6 +78,80 @@
         self.numerator = -self.numerator;
         self.denominator = -self.denominator;
     }
+    [self setMixedFractionValues];
+}
+
+- (void)setMixedFractionValues
+{
+    CRFraction* mixedFraction = [[CRFraction alloc] initWithNumerator:self.numerator
+                                                      withDenominator:self.denominator];
+
+    int factor = mixedFraction.numerator / mixedFraction.denominator;
+    if (factor == 0) {
+        self.mixedWholeNumber = 0;
+        return;
+    } else {
+        mixedFraction.mixedWholeNumber = factor;
+        mixedFraction.numerator -= factor * mixedFraction.denominator;
+    }
+}
+
+- (void)copyValuesFromFraction:(CRFraction*)result
+{
+    self.numerator = result.numerator;
+    self.denominator = result.denominator;
+    [self normalize];
+}
+
+#pragma mark class functions
++ (CRFraction*)fractionByAdding:(CRFraction*)op1
+                             to:(CRFraction*)op2
+{
+    CRFraction* result = [[CRFraction alloc] init];
+    if (op1.denominator == op2.denominator) {
+        result.numerator = op1.numerator + op2.numerator;
+    } else {
+        // Find a common denominator with the crossproduct
+        result.numerator = (op1.numerator * op2.denominator) + (op1.denominator * op2.numerator);
+        result.denominator = op1.denominator * op2.denominator;
+        [result normalize];
+    }
+    return result;
+}
+
++ (CRFraction*)fractionBySubtracting:(CRFraction*)op1 from:(CRFraction*)op2
+{
+    CRFraction* result = [[CRFraction alloc] init];
+    if (op1.denominator == op2.denominator) {
+        result.numerator = op2.numerator - op1.numerator;
+    } else {
+        // Find a common denominator with the crossproduct
+        result.numerator = (op1.denominator * op2.numerator) - (op1.numerator * op2.denominator);
+        result.denominator = op1.denominator * op2.denominator;
+        [result normalize];
+    }
+    return result;
+}
+
++ (CRFraction*)fractionByMultiplying:(CRFraction*)op1 with:(CRFraction*)op2
+{
+    CRFraction* result = [[CRFraction alloc] init];
+    result.numerator = op1.numerator * op2.numerator;
+    result.denominator = op1.denominator * op2.denominator;
+    [result normalize];
+    return result;
+}
+
++ (CRFraction*)fractionByDividing:(CRFraction*)op1 by:(CRFraction*)op2
+{
+    // reciprocal
+    NSInteger temp = op1.numerator;
+    op1.numerator = op2.denominator;
+    op1.denominator = temp;
+
+    CRFraction* result = [CRFraction fractionByMultiplying:op1
+                                                      with:op2];
+    return result;
 }
 
 @end
