@@ -136,7 +136,6 @@
 {
     self.numerator = result.numerator;
     self.denominator = result.denominator;
-    [self normalize];
 }
 
 #pragma mark class functions

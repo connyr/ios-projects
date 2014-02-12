@@ -24,11 +24,13 @@
 {
     [super viewDidLoad];
 
+
     self.frac1 = [[CRFraction alloc] initWithNumerator:1
                                        withDenominator:5];
     self.frac2 = [[CRFraction alloc] initWithNumerator:3
                                        withDenominator:5];
-
+	
+	
     self.resultDenominator.text = @"";
     self.resultNumerator.text = @"";
 
