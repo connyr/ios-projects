@@ -20,6 +20,8 @@
 		F0563F3D18AA782F000334BE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0563F3B18AA782F000334BE /* InfoPlist.strings */; };
 		F0563F3F18AA782F000334BE /* FractionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F3E18AA782F000334BE /* FractionsTests.m */; };
 		F0563F4A18AA985E000334BE /* CRFraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F4918AA985E000334BE /* CRFraction.m */; };
+		F0563F5018AB950A000334BE /* CRFractionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F4F18AB950A000334BE /* CRFractionViewController.m */; };
+		F0563F5218AB99A1000334BE /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0563F5118AB99A1000334BE /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		F0563F3E18AA782F000334BE /* FractionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FractionsTests.m; sourceTree = "<group>"; };
 		F0563F4818AA985E000334BE /* CRFraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFraction.h; sourceTree = "<group>"; };
 		F0563F4918AA985E000334BE /* CRFraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRFraction.m; sourceTree = "<group>"; };
+		F0563F4E18AB950A000334BE /* CRFractionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFractionViewController.h; sourceTree = "<group>"; };
+		F0563F4F18AB950A000334BE /* CRFractionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRFractionViewController.m; sourceTree = "<group>"; };
+		F0563F5118AB99A1000334BE /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +117,9 @@
 			children = (
 				F0563F2818AA782F000334BE /* CRAppDelegate.h */,
 				F0563F2918AA782F000334BE /* CRAppDelegate.m */,
+				F0563F4E18AB950A000334BE /* CRFractionViewController.h */,
+				F0563F4F18AB950A000334BE /* CRFractionViewController.m */,
+				F0563F5118AB99A1000334BE /* Storyboard.storyboard */,
 				F0563F2B18AA782F000334BE /* Images.xcassets */,
 				F0563F2018AA782F000334BE /* Supporting Files */,
 				F0563F4818AA985E000334BE /* CRFraction.h */,
@@ -227,6 +235,7 @@
 			files = (
 				F0563F2418AA782F000334BE /* InfoPlist.strings in Resources */,
 				F0563F2C18AA782F000334BE /* Images.xcassets in Resources */,
+				F0563F5218AB99A1000334BE /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +257,7 @@
 				F0563F2618AA782F000334BE /* main.m in Sources */,
 				F0563F2A18AA782F000334BE /* CRAppDelegate.m in Sources */,
 				F0563F4A18AA985E000334BE /* CRFraction.m in Sources */,
+				F0563F5018AB950A000334BE /* CRFractionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

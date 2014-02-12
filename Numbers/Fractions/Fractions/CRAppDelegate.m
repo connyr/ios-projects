@@ -7,7 +7,8 @@
 //
 
 #import "CRAppDelegate.h"
-#import "CRFraction.h"
+
+#import "CRFractionViewController.h"
 
 @implementation CRAppDelegate
 
@@ -18,13 +19,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-    CRFraction* fracA = [[CRFraction alloc] initWithNumerator:1
-                                              withDenominator:4]; // 1/4
+    self.window.rootViewController = [[UIStoryboard storyboardWithName:@"Storyboard"
+                                                                bundle:nil] instantiateInitialViewController];
 
-    CRFraction* fracB = [[CRFraction alloc] initWithNumerator:2
-                                              withDenominator:3]; // 1/3
-
-    [fracA setToDecimalValue:0.75];
     return YES;
 }
 
