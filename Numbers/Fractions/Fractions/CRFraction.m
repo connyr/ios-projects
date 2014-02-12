@@ -28,6 +28,7 @@
 {
     self = [super init];
     if (self) {
+        [self setToDecimalValue:decimalValue];
     }
     return self;
 }
@@ -70,6 +71,13 @@
     return value;
 }
 
+- (void)setToDecimalValue:(double)decimal;
+{
+    self.numerator = floor(decimal * 1000000);
+    self.denominator = 1000000;
+    [self simplify];
+}
+
 #pragma mark Utilities
 
 - (void)normalize
@@ -78,7 +86,35 @@
         self.numerator = -self.numerator;
         self.denominator = -self.denominator;
     }
+    [self simplify];
     [self setMixedFractionValues];
+}
+
+- (void)simplify
+{
+    NSInteger gcd = [self greatestCommonDividerForNumber:self.numerator
+                                              withNumber:self.denominator];
+    self.numerator /= gcd;
+    self.denominator /= gcd;
+}
+
+- (NSInteger)leastCommonMultipleForFraction:(CRFraction*)frac1 withFraction:(CRFraction*)frac2
+{
+    NSInteger gcd = [self greatestCommonDividerForNumber:frac1.denominator
+                                              withNumber:frac2.denominator];
+    NSInteger lcm = (frac1.numerator / gcd) * frac2.numerator;
+
+    return lcm;
+}
+
+- (NSInteger)greatestCommonDividerForNumber:(NSInteger)num1 withNumber:(NSInteger)num2
+{
+    while (num2 != 0) {
+        NSInteger remainder = num1 % num2;
+        num1 = num2;
+        num2 = remainder;
+    }
+    return num1;
 }
 
 - (void)setMixedFractionValues
@@ -86,7 +122,7 @@
     CRFraction* mixedFraction = [[CRFraction alloc] initWithNumerator:self.numerator
                                                       withDenominator:self.denominator];
 
-    int factor = mixedFraction.numerator / mixedFraction.denominator;
+    NSInteger factor = mixedFraction.numerator / mixedFraction.denominator;
     if (factor == 0) {
         self.mixedWholeNumber = 0;
         return;

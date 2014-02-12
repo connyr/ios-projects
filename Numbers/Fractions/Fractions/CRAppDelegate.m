@@ -24,8 +24,7 @@
     CRFraction* fracB = [[CRFraction alloc] initWithNumerator:2
                                               withDenominator:3]; // 1/3
 
-    NSLog(@" 1/4 - 1/3 = %i/%i", fracA.numerator, fracA.denominator);
-
+    [fracA setToDecimalValue:0.75];
     return YES;
 }
 

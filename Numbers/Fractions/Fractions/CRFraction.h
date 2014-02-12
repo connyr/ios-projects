@@ -32,4 +32,5 @@
 
 - (void)normalize;
 - (double)decimalValue;
+- (void)setToDecimalValue:(double)decimal;
 @end
