@@ -22,6 +22,7 @@
 		F0563F8F18AC2C11000334BE /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0563F8E18AC2C11000334BE /* Storyboard.storyboard */; };
 		F0563F9218AC2D75000334BE /* CRTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F9118AC2D75000334BE /* CRTimerViewController.m */; };
 		F0563F9518AC2D8D000334BE /* CRAlarmClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F9418AC2D8D000334BE /* CRAlarmClockViewController.m */; };
+		F0563F9B18AC3379000334BE /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F9A18AC3379000334BE /* NSString+FontAwesome.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,9 @@
 		F0563F9118AC2D75000334BE /* CRTimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTimerViewController.m; sourceTree = "<group>"; };
 		F0563F9318AC2D8D000334BE /* CRAlarmClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRAlarmClockViewController.h; sourceTree = "<group>"; };
 		F0563F9418AC2D8D000334BE /* CRAlarmClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRAlarmClockViewController.m; sourceTree = "<group>"; };
+		F0563F9818AC3224000334BE /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		F0563F9918AC3379000334BE /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		F0563F9A18AC3379000334BE /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,8 @@
 				F0563F9418AC2D8D000334BE /* CRAlarmClockViewController.m */,
 				F0563F8E18AC2C11000334BE /* Storyboard.storyboard */,
 				F0563F7118AC2C03000334BE /* Images.xcassets */,
+				F0563F9918AC3379000334BE /* NSString+FontAwesome.h */,
+				F0563F9A18AC3379000334BE /* NSString+FontAwesome.m */,
 				F0563F6618AC2C03000334BE /* Supporting Files */,
 			);
 			path = AlarmClock;
@@ -131,6 +137,7 @@
 		F0563F6618AC2C03000334BE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F0563F9818AC3224000334BE /* fontawesome-webfont.ttf */,
 				F0563F6718AC2C03000334BE /* AlarmClock-Info.plist */,
 				F0563F6818AC2C03000334BE /* InfoPlist.strings */,
 				F0563F6B18AC2C03000334BE /* main.m */,
@@ -254,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0563F9B18AC3379000334BE /* NSString+FontAwesome.m in Sources */,
 				F0563F9518AC2D8D000334BE /* CRAlarmClockViewController.m in Sources */,
 				F0563F6C18AC2C03000334BE /* main.m in Sources */,
 				F0563F7018AC2C03000334BE /* CRAppDelegate.m in Sources */,
