@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CRFractionViewController : UIViewController
+@interface CRFractionViewController : UIViewController <UIAlertViewDelegate>
+
 @property(weak, nonatomic) IBOutlet UILabel* leftNumeratorLabel;
 @property(weak, nonatomic) IBOutlet UILabel* leftDenominatorLabel;
 

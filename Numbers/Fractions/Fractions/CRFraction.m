@@ -140,18 +140,20 @@
 }
 
 #pragma mark class functions
+
 + (CRFraction*)fractionByAdding:(CRFraction*)op1
                              to:(CRFraction*)op2
 {
     CRFraction* result = [[CRFraction alloc] init];
     if (op1.denominator == op2.denominator) {
         result.numerator = op1.numerator + op2.numerator;
+        result.denominator = op1.denominator;
     } else {
         // Find a common denominator with the crossproduct
         result.numerator = (op1.numerator * op2.denominator) + (op1.denominator * op2.numerator);
         result.denominator = op1.denominator * op2.denominator;
-        [result normalize];
     }
+    [result normalize];
     return result;
 }
 
@@ -160,12 +162,13 @@
     CRFraction* result = [[CRFraction alloc] init];
     if (op1.denominator == op2.denominator) {
         result.numerator = op2.numerator - op1.numerator;
+        result.denominator = op2.denominator;
     } else {
         // Find a common denominator with the crossproduct
         result.numerator = (op1.denominator * op2.numerator) - (op1.numerator * op2.denominator);
         result.denominator = op1.denominator * op2.denominator;
-        [result normalize];
     }
+    [result normalize];
     return result;
 }
 
@@ -181,12 +184,11 @@
 + (CRFraction*)fractionByDividing:(CRFraction*)op1 by:(CRFraction*)op2
 {
     // reciprocal
-    NSInteger temp = op1.numerator;
-    op1.numerator = op2.denominator;
-    op1.denominator = temp;
+    CRFraction* temp = [[CRFraction alloc] initWithNumerator:op2.denominator
+                                             withDenominator:op2.numerator];
 
     CRFraction* result = [CRFraction fractionByMultiplying:op1
-                                                      with:op2];
+                                                      with:temp];
     return result;
 }
 
