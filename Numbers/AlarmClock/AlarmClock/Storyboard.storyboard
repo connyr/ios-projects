@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Alarm Clock View Controller - Item-->
+        <!--Alarm Clock View Controller - AlarmClock-->
         <scene sceneID="O9G-gZ-D78">
             <objects>
                 <viewController id="H78-Tj-amo" customClass="CRAlarmClockViewController" sceneMemberID="viewController">
@@ -26,13 +26,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="1l2-c9-gzh"/>
+                    <tabBarItem key="tabBarItem" title="AlarmClock" id="1l2-c9-gzh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SpV-oe-gRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="486" y="-249"/>
         </scene>
-        <!--Timer View Controller - Item-->
+        <!--Timer View Controller - Timer-->
         <scene sceneID="LN5-4F-RPM">
             <objects>
                 <viewController id="p1p-Sc-oM9" customClass="CRTimerViewController" sceneMemberID="viewController">
@@ -54,7 +54,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="3qW-lb-u1j"/>
+                    <tabBarItem key="tabBarItem" title="Timer" id="3qW-lb-u1j"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uO2-fh-doV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -66,7 +66,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="kXC-Kv-VuK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="1cL-uu-8tF">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="1cL-uu-8tF">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
