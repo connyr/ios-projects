@@ -24,13 +24,11 @@
 {
     [super viewDidLoad];
 
-
     self.frac1 = [[CRFraction alloc] initWithNumerator:1
                                        withDenominator:5];
     self.frac2 = [[CRFraction alloc] initWithNumerator:3
                                        withDenominator:5];
-	
-	
+
     self.resultDenominator.text = @"";
     self.resultNumerator.text = @"";
 
@@ -130,6 +128,7 @@
         [self showParsingAlertWithText:inputText];
     }
 }
+
 - (void)showParsingAlertWithText:(NSString*)inputText
 {
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Could not parse fraction input"
