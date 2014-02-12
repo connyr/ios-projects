@@ -90,9 +90,11 @@
 
 - (void)updateFractionLabels
 {
+    [self.frac1 normalize];
     self.leftNumeratorLabel.text = [NSNumber numberWithInt:self.frac1.numerator].stringValue;
     self.leftDenominatorLabel.text = [NSNumber numberWithInt:self.frac1.denominator].stringValue;
 
+    [self.frac2 normalize];
     self.rightNumeratorLabel.text = [NSNumber numberWithInt:self.frac2.numerator].stringValue;
     self.rightDenominatorLabel.text = [NSNumber numberWithInt:self.frac2.denominator].stringValue;
 }
@@ -114,12 +116,27 @@
 
 - (void)parseFractionInput:(NSString*)inputText
 {
-    if (inputText.doubleValue) {
+    NSArray* components = [inputText componentsSeparatedByString:@"/"];
+    if (components.count == 2) {
+        self.editingFraction.numerator = ((NSString*)components[0]).integerValue;
+        self.editingFraction.denominator = ((NSString*)components[1]).integerValue;
+        [self updateFractionLabels];
+    } else if (inputText.doubleValue) {
         [self.editingFraction setToDecimalValue:inputText.doubleValue];
         [self updateFractionLabels];
+    } else {
+        [self showParsingAlertWithText:inputText];
     }
-
-    // check
+}
+- (void)showParsingAlertWithText:(NSString*)inputText
+{
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Could not parse fraction input"
+                                                        message:@"An error occured when parsing the input for your fraction. Please try again with a differen entry"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView setAlertViewStyle:UIAlertViewStyleDefault];
+    [alertView show];
 }
 
 #pragma mark UIAlertView delegate methods
@@ -133,4 +150,5 @@
         [self parseFractionInput:[alertView textFieldAtIndex:0].text];
     }
 }
+
 @end
