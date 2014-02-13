@@ -10,9 +10,10 @@
 
 #import "CRAppDelegate.h"
 
-int main(int argc, char * argv[])
+int main(int argc, char* argv[])
 {
-	@autoreleasepool {
-	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([CRAppDelegate class]));
-	}
+    @autoreleasepool
+    {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([CRAppDelegate class]));
+    }
 }
