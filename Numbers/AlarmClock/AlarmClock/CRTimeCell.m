@@ -30,6 +30,7 @@
     [self setupCountdownLabel];
 
     self.dateFormatter = [[NSDateFormatter alloc] init];
+    [self.dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [self.dateFormatter setDateFormat:@"hh:mm:ss"];
 
     [self showPicker];
@@ -55,14 +56,24 @@
     UIFont* font = [UIFont systemFontOfSize:40];
     [self.countDownLabel setFont:font];
     [self addSubview:self.countDownLabel];
-    [self updateCountDownLabel];
     [self.countDownLabel setHidden:YES];
 }
 
 - (void)updateCountDownLabel
 {
-    NSDate* date = [NSDate dateWithTimeIntervalSince1970:self.currentTimeInterval];
-    NSString* output = [self.dateFormatter stringFromDate:date];
+    NSMutableString* output = [[NSMutableString alloc] init];
+    unsigned long seconds = self.currentTimeInterval;
+    unsigned long minutes = seconds / 60;
+    seconds %= 60;
+    unsigned long hours = minutes / 60;
+    minutes %= 60;
+
+    if (hours)
+        [output appendFormat:@"%02lu:", hours];
+
+    [output appendFormat:@"%02lu:", minutes];
+    [output appendFormat:@"%02lu", seconds];
+
     self.countDownLabel.text = output;
 }
 
