@@ -8,31 +8,97 @@
 
 #import "CRTimerViewController.h"
 
+#import "CRTimeCell.h"
+#import "FontAwesomeKit/FontAwesomeKit.h"
+
 @interface CRTimerViewController ()
 
 @end
 
 @implementation CRTimerViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)awakeFromNib
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    self.title = @"Timer";
+    FAKFontAwesome* clockIcon = [FAKFontAwesome clockOIconWithSize:15];
+    self.tabBarItem.image = [clockIcon imageWithSize:CGSizeMake(15, 15)];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark UITableViewDelegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
+{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return tableView.frame.size.height / 2;
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.section == 0) {
+        CRTimeCell* cell = nil;
+        cell = [tableView dequeueReusableCellWithIdentifier:@"TimePickerCell"
+                                               forIndexPath:indexPath];
+        return cell;
+    } else {
+        CRTimerControlCell* cell = nil;
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ControlCell"
+                                               forIndexPath:indexPath];
+        cell.delegate = self;
+        return cell;
+    }
+}
+
+#pragma mark CTTimeViewerControllerDelegate methods
+
+- (CRTimeCell*)getTimer
+{
+    return (CRTimeCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0
+                                                                                 inSection:0]];
+}
+
+- (void)timerControlShouldStart:(CRTimerControlCell*)cell
+{
+    CRTimeCell* timerView = [self getTimer];
+    [timerView startTimer];
+}
+
+- (void)timerControlShouldStop:(CRTimerControlCell*)cell
+{
+    CRTimeCell* timerView = [self getTimer];
+    [timerView stopTimer];
+}
+
+- (void)timerControlShouldPause:(CRTimerControlCell*)cell
+{
+    CRTimeCell* timerView = [self getTimer];
+    [timerView pauseTimer];
+}
+
+- (void)timerControlShouldResume:(CRTimerControlCell*)cell
+{
+    CRTimeCell* timerView = [self getTimer];
+    [timerView resumeTimer];
 }
 
 @end

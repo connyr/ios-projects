@@ -8,25 +8,25 @@
 
 #import "CRAlarmClockViewController.h"
 
+#import "FontAwesomeKit/FontAwesomeKit.h"
+
 @interface CRAlarmClockViewController ()
 
 @end
 
 @implementation CRAlarmClockViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)awakeFromNib
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    self.title = @"Alarms";
+    FAKFontAwesome* bellIcon = [FAKFontAwesome bellIconWithSize:15];
+    self.tabBarItem.image = [bellIcon imageWithSize:CGSizeMake(15, 15)];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CRTimerControlCell.h"
 
-@interface CRTimerViewController : UIViewController
+@interface CRTimerViewController : UIViewController <UITableViewDelegate, CRTimerControlCellProtocol, UITableViewDataSource>
+
+@property(weak, nonatomic) IBOutlet UITableView* tableView;
 
 @end
