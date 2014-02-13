@@ -1,0 +1,3 @@
+requires cocoapods
+
+$ pod install 

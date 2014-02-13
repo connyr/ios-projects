@@ -3,3 +3,9 @@
 project.xcworkspace
 
 xcuserdata
+
+/Numbers/AlarmClock/AlarmClock.xcworkspace/
+
+/Numbers/AlarmClock/Pods/
+
+/Numbers/AlarmClock/Podfile.lock
