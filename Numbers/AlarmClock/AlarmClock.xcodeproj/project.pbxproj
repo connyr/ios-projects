@@ -26,6 +26,7 @@
 		F0563F9C18ACAE18000334BE /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0563F9818AC3224000334BE /* fontawesome-webfont.ttf */; };
 		F0EC531518ACE4690001D4F1 /* CRTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EC531418ACE4690001D4F1 /* CRTimeCell.m */; };
 		F0EC531818ACE59F0001D4F1 /* CRTimerControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EC531718ACE59F0001D4F1 /* CRTimerControlCell.m */; };
+		F0EC531A18AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0EC531918AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		F0EC531418ACE4690001D4F1 /* CRTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTimeCell.m; sourceTree = "<group>"; };
 		F0EC531618ACE59F0001D4F1 /* CRTimerControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRTimerControlCell.h; sourceTree = "<group>"; };
 		F0EC531718ACE59F0001D4F1 /* CRTimerControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTimerControlCell.m; sourceTree = "<group>"; };
+		F0EC531918AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Annoying_Alarm_Clock-UncleKornicob.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 		F0563F6618AC2C03000334BE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F0EC531918AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 */,
 				F0563F9818AC3224000334BE /* fontawesome-webfont.ttf */,
 				F0563F6718AC2C03000334BE /* AlarmClock-Info.plist */,
 				F0563F6818AC2C03000334BE /* InfoPlist.strings */,
@@ -270,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0EC531A18AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 in Resources */,
 				F0563F9C18ACAE18000334BE /* fontawesome-webfont.ttf in Resources */,
 				F0563F6A18AC2C03000334BE /* InfoPlist.strings in Resources */,
 				F0563F7218AC2C03000334BE /* Images.xcassets in Resources */,

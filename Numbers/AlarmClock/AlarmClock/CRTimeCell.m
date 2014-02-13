@@ -8,14 +8,17 @@
 
 #import "CRTimeCell.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 // 2 states. shows either the timepicker, or the timer that counts down
 // timer can be stopped and resumed
 
-@interface CRTimeCell ()
+@interface CRTimeCell () <AVAudioPlayerDelegate, UIAlertViewDelegate>
 
 @property(strong, nonatomic) NSTimer* timer;
 @property(nonatomic) NSTimeInterval timeInterval;
 @property(nonatomic) NSTimeInterval currentTimeInterval;
+@property(nonatomic, strong) AVAudioPlayer* audioPlayer;
 
 @property(strong, nonatomic) NSDateFormatter* dateFormatter;
 
@@ -128,15 +131,16 @@
 
 - (void)countDown
 {
-    if (self.timeInterval < 1) {
+    if (self.currentTimeInterval < 1) {
         [self.timer invalidate];
         [self raiseAlarm];
-    }
-    self.currentTimeInterval--;
+    } else {
+        self.currentTimeInterval--;
 
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
 		[self updateCountDownLabel];
-    });
+        });
+    }
 }
 
 - (void)handlePickerChanges:(UIDatePicker*)picker
@@ -146,9 +150,87 @@
 
 - (void)raiseAlarm
 {
-    // play sound
-    // show alert
-    // stop alert, when sound is dismissed
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Timer finished"
+                                                        message:@"Dismiss to Close."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+
+    [self playSound];
+    [alertView show];
+}
+
+- (void)playSound
+{
+    NSError* audioSessionError = nil;
+
+    AVAudioSession* audioSession = [AVAudioSession sharedInstance];
+
+    if ([audioSession setCategory:AVAudioSessionCategoryPlayback
+                            error:&audioSessionError]) {
+        NSLog(@"Successfully set the audio session.");
+    } else {
+        NSLog(@"Could not set the audio session");
+    }
+
+    dispatch_queue_t dispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(dispatchQueue, ^(void) {
+		NSBundle *mainBundle = [NSBundle mainBundle];
+		NSString *filePath = [mainBundle pathForResource:@"Annoying_Alarm_Clock-UncleKornicob"
+												  ofType:@"mp3"];
+		NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+		NSError *audioPlayerError = nil;
+		
+		self.audioPlayer = [[AVAudioPlayer alloc]
+							initWithData:fileData
+							error:&audioPlayerError];
+		
+		if (self.audioPlayer != nil)
+		{			self.audioPlayer.delegate = self;
+			if ([self.audioPlayer prepareToPlay] && [self.audioPlayer play]){ NSLog(@"Successfully started playing.");
+			}else{
+				NSLog(@"Failed to play the audio file."); self.audioPlayer = nil;
+			}
+		}else{
+			NSLog(@"Could not instantiate the audio player.");
+		}
+    });
+}
+
+#pragma mark UIAlertView delegate
+
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+
+    [self.audioPlayer stop];
+    [self showPicker];
+}
+
+#pragma mark AVAudio delegate
+
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer*)player
+{
+    NSLog(@"audioPlayerBeginInterruption");
+}
+
+- (void)audioPlayerEndInterruption:(AVAudioPlayer*)player withOptions:(NSUInteger)flags
+{
+    if (flags == AVAudioSessionInterruptionOptionShouldResume) {
+        [player play];
+    }
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
+{
+    if (flag) {
+        NSLog(@"Audio player stopped correctly.");
+    } else {
+        NSLog(@"Audio player did not stop correctly.");
+    }
+    if ([player isEqual:self.audioPlayer]) {
+        self.audioPlayer = nil;
+    } else { /* This is not our audio player */
+    }
 }
 
 @end
