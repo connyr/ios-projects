@@ -11,5 +11,4 @@ Numbers
  - [Timer](Numbers/AlarmClock/)
      + Timer in x minutes/hours with alarm. Similar to Apple's Timer App.
      + Start, Stop, Pause, Resume
-
  - [AlarmClock](Numbers/AlarmClock/)
