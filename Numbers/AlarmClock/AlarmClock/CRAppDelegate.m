@@ -53,7 +53,7 @@
 
 - (void)runTimersInBackground
 {
-    SEL updateSelector = NSSelectorFromString(@"updateSecond");
+    SEL updateSelector = NSSelectorFromString(@"updateInBackgroundPerSecond");
 
     for (UIViewController* viewController in self.mainController.viewControllers) {
         if ([viewController respondsToSelector:updateSelector]) {

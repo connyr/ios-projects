@@ -85,8 +85,9 @@
 
 #pragma mark event methods
 
-- (void)updateSecond
+- (void)updateInBackgroundPerSecond
 {
+    [self countDown];
 }
 
 - (void)countDown
@@ -105,6 +106,16 @@
 
 - (void)raiseAlarm
 {
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        [self showCountDownFinishedAlert];
+    } else {
+        [self showCountDownFinishedNotification];
+    }
+}
+
+- (void)showCountDownFinishedAlert
+{
+
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Timer finished"
                                                         message:@"Dismiss to Close."
                                                        delegate:self
@@ -113,6 +124,16 @@
 
     [self playSound];
     [alertView show];
+}
+
+- (void)showCountDownFinishedNotification
+{
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = [NSDate date];
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = 1;
+    localNotification.alertBody = @"Timer finished";
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 - (void)playSound

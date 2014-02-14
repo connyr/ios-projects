@@ -14,6 +14,6 @@
 
 @property(weak, nonatomic) IBOutlet UITableView* tableView;
 
-- (void)updateSecond;
+- (void)updateInBackgroundPerSecond;
 
 @end
