@@ -74,11 +74,13 @@
 - (void)pauseTimer
 {
     [self stopCountDown];
+    self.isActive = NO;
 }
 
 - (void)resumeTimer
 {
     [self scheduleCountDown];
+    self.isActive = YES;
 }
 
 - (CRTimerCell*)getTimerView
@@ -97,7 +99,9 @@
 
 - (void)updateInBackgroundPerSecond
 {
-    [self countDown];
+    if (self.isActive) {
+        [self countDown];
+    }
 }
 
 - (void)countDown
