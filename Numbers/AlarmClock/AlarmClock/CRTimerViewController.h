@@ -6,16 +6,13 @@
 //  Copyright (c) 2014 Cornelia Rehbein. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "CRTimerControlCell.h"
+
+#import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
 @interface CRTimerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate, UIAlertViewDelegate, CRTimerControlCellDelegate>
 
-@property(weak, nonatomic) IBOutlet UITableView* tableView;
-
-
 - (void)updateInBackgroundPerSecond;
-
 
 @end

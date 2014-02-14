@@ -7,6 +7,7 @@
 //
 
 #import "CRTimerControlCell.h"
+
 #import "FontAwesomeKit/FontAwesomeKit.h"
 
 @interface CRTimerControlCell ()

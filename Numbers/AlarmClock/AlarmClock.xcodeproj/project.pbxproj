@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BBE31A688A954743B7F69BE6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2D6FC6DCFA4390B31B9DE0 /* libPods.a */; };
+		F002241618AEB1730089F27F /* CRStopwatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F002241518AEB1730089F27F /* CRStopwatchViewController.m */; };
 		F0563F6018AC2C03000334BE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0563F5F18AC2C03000334BE /* Foundation.framework */; };
 		F0563F6218AC2C03000334BE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0563F6118AC2C03000334BE /* CoreGraphics.framework */; };
 		F0563F6418AC2C03000334BE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0563F6318AC2C03000334BE /* UIKit.framework */; };
@@ -42,6 +43,8 @@
 /* Begin PBXFileReference section */
 		CB2D6FC6DCFA4390B31B9DE0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C492C62BCE46E285084DCF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		F002241418AEB1730089F27F /* CRStopwatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRStopwatchViewController.h; sourceTree = "<group>"; };
+		F002241518AEB1730089F27F /* CRStopwatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRStopwatchViewController.m; sourceTree = "<group>"; };
 		F0563F5C18AC2C03000334BE /* AlarmClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0563F5F18AC2C03000334BE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F0563F6118AC2C03000334BE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -96,6 +99,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F002241718AEB1810089F27F /* Stopwatch */ = {
+			isa = PBXGroup;
+			children = (
+				F002241418AEB1730089F27F /* CRStopwatchViewController.h */,
+				F002241518AEB1730089F27F /* CRStopwatchViewController.m */,
+			);
+			name = Stopwatch;
+			sourceTree = "<group>";
+		};
 		F0563F5318AC2C03000334BE = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				F0EC530F18ACE3D40001D4F1 /* Timer */,
+				F002241718AEB1810089F27F /* Stopwatch */,
 				F0EC530E18ACE3CF0001D4F1 /* Alarm */,
 				F0563F6E18AC2C03000334BE /* CRAppDelegate.h */,
 				F0563F6F18AC2C03000334BE /* CRAppDelegate.m */,
@@ -329,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F002241618AEB1730089F27F /* CRStopwatchViewController.m in Sources */,
 				F0563F9518AC2D8D000334BE /* CRAlarmClockViewController.m in Sources */,
 				F0563F6C18AC2C03000334BE /* main.m in Sources */,
 				F0EC531818ACE59F0001D4F1 /* CRTimerControlCell.m in Sources */,

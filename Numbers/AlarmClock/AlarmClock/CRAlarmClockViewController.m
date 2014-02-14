@@ -19,8 +19,8 @@
 - (void)awakeFromNib
 {
     self.title = @"Alarms";
-    FAKFontAwesome* bellIcon = [FAKFontAwesome bellIconWithSize:15];
-    self.tabBarItem.image = [bellIcon imageWithSize:CGSizeMake(15, 15)];
+    FAKFontAwesome* horn = [FAKFontAwesome bullhornIconWithSize:15];
+    self.tabBarItem.image = [horn imageWithSize:CGSizeMake(15, 15)];
 }
 
 - (void)viewDidLoad

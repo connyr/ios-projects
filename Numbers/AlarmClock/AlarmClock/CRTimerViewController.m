@@ -16,6 +16,7 @@
 @property(strong, nonatomic) NSTimer* timer;
 @property(nonatomic) NSTimeInterval currentTimeInterval;
 @property(nonatomic, strong) AVAudioPlayer* audioPlayer;
+@property(weak, nonatomic) IBOutlet UITableView* tableView;
 
 @property(nonatomic) BOOL isActive;
 
@@ -26,7 +27,7 @@
 - (void)awakeFromNib
 {
     self.title = @"Timer";
-    FAKFontAwesome* clockIcon = [FAKFontAwesome clockOIconWithSize:15];
+    FAKFontAwesome* clockIcon = [FAKFontAwesome bellIconWithSize:15];
     self.tabBarItem.image = [clockIcon imageWithSize:CGSizeMake(15, 15)];
 }
 
