@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CRTimerControlCell.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface CRTimerViewController : UIViewController <UITableViewDelegate, CRTimerControlCellProtocol, UITableViewDataSource>
+@interface CRTimerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate, UIAlertViewDelegate, CRTimerControlCellDelegate>
 
 @property(weak, nonatomic) IBOutlet UITableView* tableView;
 

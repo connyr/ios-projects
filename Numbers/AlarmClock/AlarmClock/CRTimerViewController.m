@@ -13,12 +13,16 @@
 
 @interface CRTimerViewController ()
 
+@property(strong, nonatomic) NSTimer* timer;
+@property(nonatomic) NSTimeInterval currentTimeInterval;
+@property(nonatomic, strong) AVAudioPlayer* audioPlayer;
+
 @end
 
 @implementation CRTimerViewController
 
 - (void)awakeFromNib
-{ 
+{
     self.title = @"Timer";
     FAKFontAwesome* clockIcon = [FAKFontAwesome clockOIconWithSize:15];
     self.tabBarItem.image = [clockIcon imageWithSize:CGSizeMake(15, 15)];
@@ -34,6 +38,149 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)scheduleCountDown
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                  target:self
+                                                selector:@selector(countDown)
+                                                userInfo:nil
+                                                 repeats:YES];
+}
+
+- (void)stopCountDown
+{
+    [self.timer invalidate];
+}
+
+- (void)startTimer
+{
+    self.currentTimeInterval = [[self getTimerView] currentTimeInterval];
+    [[self getTimerView] startTimerWithTimeInterval:self.currentTimeInterval];
+    [self scheduleCountDown];
+}
+
+- (void)stopTimer
+{
+    [self stopCountDown];
+    [[self getTimerView] stopTimer];
+}
+
+- (void)pauseTimer
+{
+    [self stopCountDown];
+}
+
+- (void)resumeTimer
+{
+    [self scheduleCountDown];
+}
+
+- (CRTimerCell*)getTimerView
+{
+    return (CRTimerCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0
+                                                                                  inSection:0]];
+}
+
+#pragma mark event methods
+
+- (void)countDown
+{
+    if (self.currentTimeInterval < 1) {
+        [self.timer invalidate];
+        [self raiseAlarm];
+    } else {
+        self.currentTimeInterval--;
+
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+			[[self getTimerView] updateTimerWithTimeInterval:self.currentTimeInterval];
+        });
+    }
+}
+
+- (void)raiseAlarm
+{
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Timer finished"
+                                                        message:@"Dismiss to Close."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+
+    [self playSound];
+    [alertView show];
+}
+
+- (void)playSound
+{
+    NSError* audioSessionError = nil;
+
+    AVAudioSession* audioSession = [AVAudioSession sharedInstance];
+
+    if ([audioSession setCategory:AVAudioSessionCategoryPlayback
+                            error:&audioSessionError]) {
+        NSLog(@"Successfully set the audio session.");
+    } else {
+        NSLog(@"Could not set the audio session");
+    }
+
+    dispatch_queue_t dispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(dispatchQueue, ^(void) {
+		NSBundle *mainBundle = [NSBundle mainBundle];
+		NSString *filePath = [mainBundle pathForResource:@"Annoying_Alarm_Clock-UncleKornicob"
+												  ofType:@"mp3"];
+		NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+		NSError *audioPlayerError = nil;
+		
+		self.audioPlayer = [[AVAudioPlayer alloc]
+							initWithData:fileData
+							error:&audioPlayerError];
+		
+		if (self.audioPlayer != nil)
+		{			self.audioPlayer.delegate = self;
+			if ([self.audioPlayer prepareToPlay] && [self.audioPlayer play]){ NSLog(@"Successfully started playing.");
+			}else{
+				NSLog(@"Failed to play the audio file."); self.audioPlayer = nil;
+			}
+		}else{
+			NSLog(@"Could not instantiate the audio player.");
+		}
+    });
+}
+
+#pragma mark UIAlertView delegate
+
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.audioPlayer stop];
+    [[self getTimerView] stopTimer];
+}
+
+#pragma mark AVAudio delegate
+
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer*)player
+{
+    NSLog(@"audioPlayerBeginInterruption");
+}
+
+- (void)audioPlayerEndInterruption:(AVAudioPlayer*)player withOptions:(NSUInteger)flags
+{
+    if (flags == AVAudioSessionInterruptionOptionShouldResume) {
+        [player play];
+    }
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
+{
+    if (flag) {
+        NSLog(@"Audio player stopped correctly.");
+    } else {
+        NSLog(@"Audio player did not stop correctly.");
+    }
+    if ([player isEqual:self.audioPlayer]) {
+        self.audioPlayer = nil;
+    } else { /* This is not our audio player */
+    }
 }
 
 #pragma mark UITableViewDelegate
@@ -71,34 +218,24 @@
 
 #pragma mark CTTimeViewerControllerDelegate methods
 
-- (CRTimerCell*)getTimer
-{
-    return (CRTimerCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0
-                                                                                 inSection:0]];
-}
-
 - (void)timerControlShouldStart:(CRTimerControlCell*)cell
 {
-    CRTimerCell* timerView = [self getTimer];
-    [timerView startTimer];
+    [self startTimer];
 }
 
 - (void)timerControlShouldStop:(CRTimerControlCell*)cell
 {
-    CRTimerCell* timerView = [self getTimer];
-    [timerView stopTimer];
+    [self stopTimer];
 }
 
 - (void)timerControlShouldPause:(CRTimerControlCell*)cell
 {
-    CRTimerCell* timerView = [self getTimer];
-    [timerView pauseTimer];
+    [self pauseTimer];
 }
 
 - (void)timerControlShouldResume:(CRTimerControlCell*)cell
 {
-    CRTimerCell* timerView = [self getTimer];
-    [timerView resumeTimer];
+    [self resumeTimer];
 }
 
 @end

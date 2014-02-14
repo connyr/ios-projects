@@ -8,7 +8,7 @@
 
 @class CRTimerControlCell;
 
-@protocol CRTimerControlCellProtocol <NSObject>
+@protocol CRTimerControlCellDelegate <NSObject>
 
 @required
 - (void)timerControlShouldStart:(CRTimerControlCell*)cell;
@@ -25,5 +25,5 @@
 @property(strong, nonatomic) UIButton* leftButton;
 @property(strong, nonatomic) UIButton* rightButton;
 
-@property(weak, nonatomic) id<CRTimerControlCellProtocol> delegate;
+@property(weak, nonatomic) id<CRTimerControlCellDelegate> delegate;
 @end

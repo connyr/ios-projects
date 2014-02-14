@@ -13,11 +13,10 @@
 @property(strong, nonatomic) UILabel* countDownLabel;
 @property(strong, nonatomic) UIDatePicker* timePicker;
 
+- (NSTimeInterval)currentTimeInterval;
 
-- (void)startTimer;
+- (void)startTimerWithTimeInterval:(NSTimeInterval)timeInSeconds;
+- (void)updateTimerWithTimeInterval:(NSTimeInterval)remainingTimeInSeconds;
 - (void)stopTimer;
-
-- (void)pauseTimer;
-- (void)resumeTimer;
 
 @end
