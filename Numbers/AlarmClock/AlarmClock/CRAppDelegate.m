@@ -5,8 +5,9 @@
 //  Created by Cornelia Rehbein on 12/02/14.
 //  Copyright (c) 2014 Cornelia Rehbein. All rights reserved.
 //
-
 #import "CRAppDelegate.h"
+
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks" // for run timers in background method. Warning can be safely ignored
 
 @implementation CRAppDelegate
 
@@ -17,9 +18,12 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-    UIViewController* startController = [[UIStoryboard storyboardWithName:@"Storyboard"
-                                                                   bundle:nil] instantiateInitialViewController];
-    self.window.rootViewController = startController;
+    self.mainController = (UITabBarController*)[[UIStoryboard storyboardWithName:@"Storyboard"
+                                                                          bundle:nil] instantiateInitialViewController];
+    if (self.mainController) {
+        self.window.rootViewController = self.mainController;
+    }
+
     return YES;
 }
 
@@ -31,8 +35,32 @@
 
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    UIApplication* app = [UIApplication sharedApplication];
+
+    __block UIBackgroundTaskIdentifier backgroundTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        [app endBackgroundTask:backgroundTask];
+        backgroundTask = UIBackgroundTaskInvalid; }];
+
+    //new timer with async call
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+		//run function methodRunAfterBackground
+        NSTimer* t = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(runTimersInBackground) userInfo:nil repeats:NO];
+        [[NSRunLoop currentRunLoop] addTimer:t forMode:NSDefaultRunLoopMode];
+        [[NSRunLoop currentRunLoop] run];
+    });
+}
+
+- (void)runTimersInBackground
+{
+    SEL updateSelector = NSSelectorFromString(@"updateSecond");
+
+    for (UIViewController* viewController in self.mainController.viewControllers) {
+        if ([viewController respondsToSelector:updateSelector]) {
+
+            [viewController performSelector:updateSelector];
+        }
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication*)application

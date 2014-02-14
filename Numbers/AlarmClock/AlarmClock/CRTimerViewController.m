@@ -85,6 +85,10 @@
 
 #pragma mark event methods
 
+- (void)updateSecond
+{
+}
+
 - (void)countDown
 {
     if (self.currentTimeInterval < 1) {
