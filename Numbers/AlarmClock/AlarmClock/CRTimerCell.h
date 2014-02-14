@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CRTimeCell : UITableViewCell
+@interface CRTimerCell : UITableViewCell
 
 @property(strong, nonatomic) UILabel* countDownLabel;
 @property(strong, nonatomic) UIDatePicker* timePicker;

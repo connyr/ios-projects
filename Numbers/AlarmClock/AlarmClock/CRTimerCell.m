@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Cornelia Rehbein. All rights reserved.
 //
 
-#import "CRTimeCell.h"
+#import "CRTimerCell.h"
 
 #import <AVFoundation/AVFoundation.h>
 
 // 2 states. shows either the timepicker, or the timer that counts down
 // timer can be stopped and resumed
 
-@interface CRTimeCell () <AVAudioPlayerDelegate, UIAlertViewDelegate>
+@interface CRTimerCell () <AVAudioPlayerDelegate, UIAlertViewDelegate>
 
 @property(strong, nonatomic) NSTimer* timer;
 @property(nonatomic) NSTimeInterval timeInterval;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation CRTimeCell
+@implementation CRTimerCell
 
 - (void)awakeFromNib
 {

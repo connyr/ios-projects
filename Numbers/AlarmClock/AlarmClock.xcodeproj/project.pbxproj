@@ -24,7 +24,7 @@
 		F0563F9218AC2D75000334BE /* CRTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F9118AC2D75000334BE /* CRTimerViewController.m */; };
 		F0563F9518AC2D8D000334BE /* CRAlarmClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F9418AC2D8D000334BE /* CRAlarmClockViewController.m */; };
 		F0563F9C18ACAE18000334BE /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0563F9818AC3224000334BE /* fontawesome-webfont.ttf */; };
-		F0EC531518ACE4690001D4F1 /* CRTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EC531418ACE4690001D4F1 /* CRTimeCell.m */; };
+		F0EC531518ACE4690001D4F1 /* CRTimerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EC531418ACE4690001D4F1 /* CRTimerCell.m */; };
 		F0EC531818ACE59F0001D4F1 /* CRTimerControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EC531718ACE59F0001D4F1 /* CRTimerControlCell.m */; };
 		F0EC531A18AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0EC531918AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 */; };
 /* End PBXBuildFile section */
@@ -64,8 +64,8 @@
 		F0563F9318AC2D8D000334BE /* CRAlarmClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRAlarmClockViewController.h; sourceTree = "<group>"; };
 		F0563F9418AC2D8D000334BE /* CRAlarmClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRAlarmClockViewController.m; sourceTree = "<group>"; };
 		F0563F9818AC3224000334BE /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
-		F0EC531318ACE4690001D4F1 /* CRTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRTimeCell.h; sourceTree = "<group>"; };
-		F0EC531418ACE4690001D4F1 /* CRTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTimeCell.m; sourceTree = "<group>"; };
+		F0EC531318ACE4690001D4F1 /* CRTimerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRTimerCell.h; sourceTree = "<group>"; };
+		F0EC531418ACE4690001D4F1 /* CRTimerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTimerCell.m; sourceTree = "<group>"; };
 		F0EC531618ACE59F0001D4F1 /* CRTimerControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRTimerControlCell.h; sourceTree = "<group>"; };
 		F0EC531718ACE59F0001D4F1 /* CRTimerControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTimerControlCell.m; sourceTree = "<group>"; };
 		F0EC531918AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Annoying_Alarm_Clock-UncleKornicob.mp3"; sourceTree = "<group>"; };
@@ -187,8 +187,8 @@
 			children = (
 				F0563F9018AC2D75000334BE /* CRTimerViewController.h */,
 				F0563F9118AC2D75000334BE /* CRTimerViewController.m */,
-				F0EC531318ACE4690001D4F1 /* CRTimeCell.h */,
-				F0EC531418ACE4690001D4F1 /* CRTimeCell.m */,
+				F0EC531318ACE4690001D4F1 /* CRTimerCell.h */,
+				F0EC531418ACE4690001D4F1 /* CRTimerCell.m */,
 				F0EC531618ACE59F0001D4F1 /* CRTimerControlCell.h */,
 				F0EC531718ACE59F0001D4F1 /* CRTimerControlCell.m */,
 			);
@@ -332,7 +332,7 @@
 				F0563F9518AC2D8D000334BE /* CRAlarmClockViewController.m in Sources */,
 				F0563F6C18AC2C03000334BE /* main.m in Sources */,
 				F0EC531818ACE59F0001D4F1 /* CRTimerControlCell.m in Sources */,
-				F0EC531518ACE4690001D4F1 /* CRTimeCell.m in Sources */,
+				F0EC531518ACE4690001D4F1 /* CRTimerCell.m in Sources */,
 				F0563F7018AC2C03000334BE /* CRAppDelegate.m in Sources */,
 				F0563F9218AC2D75000334BE /* CRTimerViewController.m in Sources */,
 			);
