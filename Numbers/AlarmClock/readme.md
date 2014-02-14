@@ -3,7 +3,7 @@ Timer
  + Timer in x minutes/hours with alarm. Similar to Apple's Timer App.
  + Start, Stop, Pause, Resume
 
-![Timer](images/Timer-1.png)_![Timer](images/Timer-2.png)
+![Timer](images/Timer-2.png)_![Timer](images/Timer-1.png)
 
 AlarmClock
 -------------
