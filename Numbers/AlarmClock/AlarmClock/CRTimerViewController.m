@@ -17,6 +17,8 @@
 @property(nonatomic) NSTimeInterval currentTimeInterval;
 @property(nonatomic, strong) AVAudioPlayer* audioPlayer;
 
+@property(nonatomic) BOOL isActive;
+
 @end
 
 @implementation CRTimerViewController
@@ -42,6 +44,7 @@
 
 - (void)scheduleCountDown
 {
+    self.isActive = YES;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                   target:self
                                                 selector:@selector(countDown)
@@ -51,6 +54,7 @@
 
 - (void)stopCountDown
 {
+    self.isActive = NO;
     [self.timer invalidate];
 }
 
@@ -83,6 +87,12 @@
                                                                                   inSection:0]];
 }
 
+- (CRTimerControlCell*)getControlsView
+{
+    return (CRTimerControlCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0
+                                                                                         inSection:1]];
+}
+
 #pragma mark event methods
 
 - (void)updateInBackgroundPerSecond
@@ -94,7 +104,7 @@
 {
     if (self.currentTimeInterval < 1) {
         [self.timer invalidate];
-        [self raiseAlarm];
+        [self countDownFinished];
     } else {
         self.currentTimeInterval--;
 
@@ -104,13 +114,14 @@
     }
 }
 
-- (void)raiseAlarm
+- (void)countDownFinished
 {
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         [self showCountDownFinishedAlert];
     } else {
         [self showCountDownFinishedNotification];
     }
+    [[self getControlsView] reset];
 }
 
 - (void)showCountDownFinishedAlert

@@ -26,4 +26,7 @@
 @property(strong, nonatomic) UIButton* rightButton;
 
 @property(weak, nonatomic) id<CRTimerControlCellDelegate> delegate;
+
+- (void)reset;
+
 @end

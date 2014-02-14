@@ -20,6 +20,11 @@
 - (void)awakeFromNib
 {
     [self createButtons];
+    [self reset];
+}
+
+- (void)reset
+{
     [self showStartButton];
     [self showPauseButtonEnabled:NO];
     self.isPaused = NO;
