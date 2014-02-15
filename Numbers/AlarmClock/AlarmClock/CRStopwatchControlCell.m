@@ -1,40 +1,45 @@
 //
-//  CRTimerControlCell.m
+//  CRStopwatchControlCell.m
 //  AlarmClock
 //
-//  Created by Cornelia Rehbein on 13/02/14.
+//  Created by Cornelia Rehbein on 15/02/14.
 //  Copyright (c) 2014 Cornelia Rehbein. All rights reserved.
 //
 
-#import "CRTimerControlCell.h"
+#import "CRStopwatchControlCell.h"
 
 #import "FontAwesomeKit/FontAwesomeKit.h"
 
-@interface CRTimerControlCell ()
+@interface CRStopwatchControlCell ()
 
-@property(nonatomic) BOOL isPaused;
 @property(nonatomic) BOOL isActive;
+@property(nonatomic) BOOL addedLaps;
 
 @end
 
-@implementation CRTimerControlCell
+@implementation CRStopwatchControlCell
+
+const static int kFontSize = 15;
 
 - (void)awakeFromNib
 {
     [self styleButtons];
-    [self reset];
-}
-
-- (void)reset
-{
-    [self showStartButton];
-    [self showPauseButtonEnabled:NO];
-    self.isPaused = NO;
-    self.isActive = NO;
+    [self showInactive];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
+}
+
+- (void)showInactive
+{
+    self.isActive = NO;
+    [self showStartButton];
+    if (self.addedLaps) {
+        [self showResetButton];
+    } else {
+        [self showLapButtonActive:NO];
+    }
 }
 
 - (void)styleButtons
@@ -50,7 +55,7 @@
                                  AtCenter:center];
 
     [self.rightButton addTarget:self
-                         action:@selector(triggerPause:)
+                         action:@selector(addLapReset:)
                forControlEvents:UIControlEventTouchUpInside];
 
     [self.leftButton addTarget:self
@@ -60,32 +65,32 @@
 
 - (void)showStartButton
 {
-    [self.leftButton setImage:[[FAKFontAwesome playIconWithSize:30] imageWithSize:CGSizeMake(30, 30)]
+    [self.leftButton setImage:[[FAKFontAwesome playIconWithSize:kFontSize] imageWithSize:CGSizeMake(kFontSize, kFontSize)]
                      forState:UIControlStateNormal];
     [self.leftButton.layer setBorderColor:[UIColor greenColor].CGColor];
 }
 
-- (void)showStopButton
+- (void)showLapButtonActive:(BOOL)enabled
 {
-    [self.leftButton setImage:[[FAKFontAwesome stopIconWithSize:30] imageWithSize:CGSizeMake(30, 30)]
-                     forState:UIControlStateNormal];
-    [self.leftButton.layer setBorderColor:[UIColor redColor].CGColor];
-}
-
-- (void)showPauseButtonEnabled:(BOOL)enabled
-{
-    [self.rightButton setImage:[[FAKFontAwesome pauseIconWithSize:30] imageWithSize:CGSizeMake(30, 30)]
+    [self.rightButton setImage:[[FAKFontAwesome plusIconWithSize:kFontSize] imageWithSize:CGSizeMake(kFontSize, kFontSize)]
                       forState:UIControlStateNormal];
     [self.rightButton.layer setBorderColor:[UIColor grayColor].CGColor];
     [self.rightButton setEnabled:enabled];
 }
 
-- (void)showResumeButton
+- (void)showResetButton
 {
-    [self.rightButton setImage:[[FAKFontAwesome repeatIconWithSize:30] imageWithSize:CGSizeMake(30, 30)]
+    [self.rightButton setImage:[[FAKFontAwesome refreshIconWithSize:kFontSize] imageWithSize:CGSizeMake(kFontSize, kFontSize)]
                       forState:UIControlStateNormal];
     [self.rightButton.layer setBorderColor:[UIColor grayColor].CGColor];
     [self.rightButton setEnabled:YES];
+}
+
+- (void)showStopButton
+{
+    [self.leftButton setImage:[[FAKFontAwesome stopIconWithSize:kFontSize] imageWithSize:CGSizeMake(kFontSize, kFontSize)]
+                     forState:UIControlStateNormal];
+    [self.leftButton.layer setBorderColor:[UIColor redColor].CGColor];
 }
 
 - (UIButton*)resizeButton:(UIButton*)button AtCenter:(CGPoint)center
@@ -93,7 +98,7 @@
     [button removeFromSuperview];
     button = [UIButton buttonWithType:UIButtonTypeCustom];
 
-    NSInteger size = self.contentView.frame.size.height / 2;
+    NSInteger size = self.contentView.frame.size.height * 2 / 3;
 
     [button setFrame:CGRectMake(0,
                                 0,
@@ -135,33 +140,31 @@
     }
 }
 
+- (void)addLapReset:(UIButton*)button
+{
+    if (self.isActive) {
+        self.addedLaps = YES;
+        [self.delegate stopWatchShouldAddLap:self];
+    } else {
+        self.addedLaps = NO;
+        [self.delegate stopWatchShouldResetTiming:self];
+        [self showLapButtonActive:NO];
+    }
+}
+
 - (void)startTimer
 {
     self.isActive = YES;
-    [self.delegate timerControlShouldStart:self];
+    [self.delegate stopWatchShouldStartTiming:self];
     [self showStopButton];
-    [self showPauseButtonEnabled:YES];
+    [self showLapButtonActive:YES];
 }
 
 - (void)stopTimer
 {
     self.isActive = NO;
-    [self.delegate timerControlShouldStop:self];
-    [self showStartButton];
-    [self showPauseButtonEnabled:NO];
-}
-
-- (void)triggerPause:(UIButton*)button
-{
-    if (self.isPaused) {
-        [self.delegate timerControlShouldResume:self];
-        [self showPauseButtonEnabled:YES];
-        self.isPaused = NO;
-    } else {
-        [self.delegate timerControlShouldPause:self];
-        [self showResumeButton];
-        self.isPaused = YES;
-    }
+    [self.delegate stopWatchShouldStopTiming:self];
+    [self showInactive];
 }
 
 @end

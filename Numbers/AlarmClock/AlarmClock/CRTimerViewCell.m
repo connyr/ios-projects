@@ -6,32 +6,33 @@
 //  Copyright (c) 2014 Cornelia Rehbein. All rights reserved.
 //
 
-#import "CRTimerCell.h"
+#import "CRTimerViewCell.h"
 
-@interface CRTimerCell ()
+@interface CRTimerViewCell ()
 
 @end
 
-@implementation CRTimerCell
+@implementation CRTimerViewCell
 
 - (void)awakeFromNib
 {
     [self setupTimePicker];
     [self setupCountdownLabel];
-
     [self showPicker];
 }
 
 - (void)setupTimePicker
 {
-    self.timePicker = [[UIDatePicker alloc] initWithFrame:self.contentView.bounds];
     [self.timePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
-    [self addSubview:self.timePicker];
 
     NSTimeInterval startTime = 60 * 5;
     [self.timePicker setCountDownDuration:startTime];
 
     [self.timePicker setHidden:YES];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
 }
 
 - (void)setupCountdownLabel
@@ -59,7 +60,6 @@
 {
     [self showPicker];
 }
-
 
 - (void)updateTimerWithTimeInterval:(NSTimeInterval)remainingTimeInSeconds
 {

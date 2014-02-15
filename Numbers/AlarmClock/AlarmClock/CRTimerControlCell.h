@@ -22,8 +22,8 @@
 
 @interface CRTimerControlCell : UITableViewCell
 
-@property(strong, nonatomic) UIButton* leftButton;
-@property(strong, nonatomic) UIButton* rightButton;
+@property(weak, nonatomic) IBOutlet UIButton* leftButton;
+@property(weak, nonatomic) IBOutlet UIButton* rightButton;
 
 @property(weak, nonatomic) id<CRTimerControlCellDelegate> delegate;
 

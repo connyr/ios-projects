@@ -8,7 +8,7 @@
 
 #import "CRTimerViewController.h"
 
-#import "CRTimerCell.h"
+#import "CRTimerViewCell.h"
 #import "FontAwesomeKit/FontAwesomeKit.h"
 
 @interface CRTimerViewController ()
@@ -84,10 +84,10 @@
     self.isActive = YES;
 }
 
-- (CRTimerCell*)getTimerView
+- (CRTimerViewCell*)getTimerView
 {
-    return (CRTimerCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0
-                                                                                  inSection:0]];
+    return (CRTimerViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0
+                                                                                      inSection:0]];
 }
 
 - (CRTimerControlCell*)getControlsView
@@ -244,7 +244,7 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (indexPath.section == 0) {
-        CRTimerCell* cell = nil;
+        CRTimerViewCell* cell = nil;
         cell = [tableView dequeueReusableCellWithIdentifier:@"TimePickerCell"
                                                forIndexPath:indexPath];
         return cell;

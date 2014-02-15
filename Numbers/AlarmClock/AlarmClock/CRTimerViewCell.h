@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CRTimerCell : UITableViewCell
+@interface CRTimerViewCell : UITableViewCell
 
 @property(strong, nonatomic) UILabel* countDownLabel;
-@property(strong, nonatomic) UIDatePicker* timePicker;
+@property(weak, nonatomic) IBOutlet UIDatePicker* timePicker;
 
 - (NSTimeInterval)currentTimeInterval;
 

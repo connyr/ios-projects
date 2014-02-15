@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CRStopwatchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+#import "CRStopwatchControlCell.h"
+
+@interface CRStopwatchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, CRStopWatchControlDelegate>
+
+- (void)updateInBackgroundPerSecond;
 
 @end
