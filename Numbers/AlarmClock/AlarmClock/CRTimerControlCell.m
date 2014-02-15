@@ -19,8 +19,9 @@
 
 @implementation CRTimerControlCell
 
-- (void)awakeFromNib
+- (void)layoutSubviews
 {
+    [super layoutSubviews];
     [self styleButtons];
     [self reset];
 }
@@ -109,6 +110,11 @@
     [self.contentView addSubview:button];
 
     return button;
+}
+
+- (void)centerButtons
+{
+    self.leftButton.center = self.contentView.center;
 }
 
 - (CGPoint)leftButtonCenter

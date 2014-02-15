@@ -10,7 +10,7 @@
 
 @interface CRTimerViewCell : UITableViewCell
 
-@property(strong, nonatomic) UILabel* countDownLabel;
+@property(weak, nonatomic) IBOutlet UILabel* countDownLabel;
 @property(weak, nonatomic) IBOutlet UIDatePicker* timePicker;
 
 - (NSTimeInterval)currentTimeInterval;

@@ -31,6 +31,11 @@
     self.tabBarItem.image = [clockIcon imageWithSize:CGSizeMake(15, 15)];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.tabBarController.navigationItem setTitle:@"Timer"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -238,7 +243,7 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return tableView.frame.size.height / 2;
+    return tableView.bounds.size.height / 2;
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath

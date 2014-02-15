@@ -14,8 +14,10 @@
 
 @implementation CRTimerViewCell
 
-- (void)awakeFromNib
+- (void)layoutSubviews
 {
+    [super layoutSubviews];
+
     [self setupTimePicker];
     [self setupCountdownLabel];
     [self showPicker];
@@ -27,7 +29,6 @@
 
     NSTimeInterval startTime = 60 * 5;
     [self.timePicker setCountDownDuration:startTime];
-
     [self.timePicker setHidden:YES];
 }
 
@@ -37,11 +38,6 @@
 
 - (void)setupCountdownLabel
 {
-    self.countDownLabel = [[UILabel alloc] initWithFrame:self.contentView.bounds];
-    [self.countDownLabel setTextAlignment:NSTextAlignmentCenter];
-    UIFont* font = [UIFont systemFontOfSize:40];
-    [self.countDownLabel setFont:font];
-    [self addSubview:self.countDownLabel];
     [self.countDownLabel setHidden:YES];
 }
 

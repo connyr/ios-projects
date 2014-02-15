@@ -12,7 +12,6 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface CRTimerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate, UIAlertViewDelegate, CRTimerControlCellDelegate>
-
 - (void)updateInBackgroundPerSecond;
 
 @end

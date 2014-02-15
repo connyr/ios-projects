@@ -29,6 +29,11 @@
     self.tabBarItem.image = [clockIcon imageWithSize:CGSizeMake(15, 15)];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.tabBarController.navigationItem setTitle:@"Stopwatch"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
