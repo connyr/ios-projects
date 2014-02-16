@@ -27,6 +27,7 @@
 		F0563F9218AC2D75000334BE /* CRTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F9118AC2D75000334BE /* CRTimerViewController.m */; };
 		F0563F9518AC2D8D000334BE /* CRAlarmClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0563F9418AC2D8D000334BE /* CRAlarmClockViewController.m */; };
 		F0563F9C18ACAE18000334BE /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0563F9818AC3224000334BE /* fontawesome-webfont.ttf */; };
+		F099D0E818B0BAF3006567F9 /* CRLapOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F099D0E718B0BAF3006567F9 /* CRLapOverviewCell.m */; };
 		F0EC531518ACE4690001D4F1 /* CRTimerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EC531418ACE4690001D4F1 /* CRTimerViewCell.m */; };
 		F0EC531818ACE59F0001D4F1 /* CRTimerControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EC531718ACE59F0001D4F1 /* CRTimerControlCell.m */; };
 		F0EC531A18AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0EC531918AD72BB0001D4F1 /* Annoying_Alarm_Clock-UncleKornicob.mp3 */; };
@@ -73,6 +74,8 @@
 		F0563F9318AC2D8D000334BE /* CRAlarmClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRAlarmClockViewController.h; sourceTree = "<group>"; };
 		F0563F9418AC2D8D000334BE /* CRAlarmClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRAlarmClockViewController.m; sourceTree = "<group>"; };
 		F0563F9818AC3224000334BE /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		F099D0E618B0BAF3006567F9 /* CRLapOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRLapOverviewCell.h; sourceTree = "<group>"; };
+		F099D0E718B0BAF3006567F9 /* CRLapOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRLapOverviewCell.m; sourceTree = "<group>"; };
 		F0EC531318ACE4690001D4F1 /* CRTimerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRTimerViewCell.h; sourceTree = "<group>"; };
 		F0EC531418ACE4690001D4F1 /* CRTimerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTimerViewCell.m; sourceTree = "<group>"; };
 		F0EC531618ACE59F0001D4F1 /* CRTimerControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRTimerControlCell.h; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 				F01098F718AF74100004AFAB /* CRStopwatchViewCell.m */,
 				F01098F318AF737E0004AFAB /* CRStopwatchControlCell.h */,
 				F01098F418AF737E0004AFAB /* CRStopwatchControlCell.m */,
+				F099D0E618B0BAF3006567F9 /* CRLapOverviewCell.h */,
+				F099D0E718B0BAF3006567F9 /* CRLapOverviewCell.m */,
 			);
 			name = Stopwatch;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				F0EC531818ACE59F0001D4F1 /* CRTimerControlCell.m in Sources */,
 				F0EC531518ACE4690001D4F1 /* CRTimerViewCell.m in Sources */,
 				F0563F7018AC2C03000334BE /* CRAppDelegate.m in Sources */,
+				F099D0E818B0BAF3006567F9 /* CRLapOverviewCell.m in Sources */,
 				F01098F518AF737E0004AFAB /* CRStopwatchControlCell.m in Sources */,
 				F0563F9218AC2D75000334BE /* CRTimerViewController.m in Sources */,
 			);

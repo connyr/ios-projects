@@ -9,6 +9,7 @@
 #import "CRStopwatchViewController.h"
 
 #import "CRStopwatchViewCell.h"
+#import "CRLapOverviewCell.h"
 #import "FontAwesomeKit/FontAwesomeKit.h"
 
 @interface CRStopwatchViewController ()
@@ -16,6 +17,7 @@
 @property(nonatomic, strong) NSTimer* timer;
 @property(nonatomic) NSMutableArray* laps;
 @property(nonatomic) NSTimeInterval runTime;
+@property(nonatomic) NSTimeInterval lapRunTime;
 @property(nonatomic, weak) IBOutlet UITableView* tableView;
 
 @end
@@ -38,8 +40,7 @@
 {
     [super viewDidLoad];
     self.runTime = 0;
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"LapCell"];
+    self.lapRunTime = 0;
     self.laps = [[NSMutableArray alloc] init];
 }
 
@@ -49,32 +50,40 @@
 
 - (void)setupTiming
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01
-                                                  target:self
-                                                selector:@selector(updateClock)
-                                                userInfo:nil
-                                                 repeats:YES];
+    self.timer = [NSTimer timerWithTimeInterval:0.01
+                                         target:self
+                                       selector:@selector(updateClock)
+                                       userInfo:nil
+                                        repeats:YES];
+    NSRunLoop* runloop = [NSRunLoop currentRunLoop];
+    [runloop addTimer:self.timer
+              forMode:NSRunLoopCommonModes];
+    [runloop addTimer:self.timer
+              forMode:UITrackingRunLoopMode];
 }
 
 - (void)updateClock
 {
     self.runTime += 0.01;
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-		[[self getStopwatchView] updateTimeWithTimesInterval:self.runTime];
-    });
+    self.lapRunTime += 0.01;
+
+    [[self getStopwatchView] updateWithTimeInterval:self.runTime
+                                withLapTimeInterval:self.lapRunTime];
 }
 
 - (void)clearLaps
 {
     self.laps = [[NSMutableArray alloc] init];
+    [[self getLapView] setLaps:self.laps];
     [self.tableView reloadData];
 }
 
 - (void)addLap
 {
-    [self.laps addObject:[NSNumber
-                             numberWithDouble:self.runTime]];
-    [self.tableView reloadData];
+    NSString* timestamp = [CRStopwatchViewCell stringFromTimeInterval:self.lapRunTime];
+    self.lapRunTime = 0;
+    [self.laps addObject:timestamp];
+    [[self getLapView] setLaps:self.laps];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,14 +101,21 @@
                                                                         inSection:0]];
 }
 
+- (CRLapOverviewCell*)getLapView
+{
+    return (CRLapOverviewCell*)[self.tableView cellForRowAtIndexPath:
+                                                   [NSIndexPath indexPathForRow:0
+                                                                      inSection:2]];
+}
+
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSUInteger size = self.tableView.bounds.size.height;
+    NSInteger staticHeaderSize = 120;
+
     if (indexPath.section != 2) {
-        return size / 3;
-    } else {
-        return 44;
-    }
+        return staticHeaderSize;
+    } else
+        return self.tableView.bounds.size.height - (staticHeaderSize * 2);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
@@ -109,10 +125,7 @@
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section != 2) {
-        return 1;
-    } else
-        return self.laps.count;
+    return 1;
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -129,12 +142,9 @@
         cell.delegate = self;
         return cell;
     } else {
-        UITableViewCell* cell = nil;
+        CRLapOverviewCell* cell = nil;
         cell = [tableView dequeueReusableCellWithIdentifier:@"LapCell"
                                                forIndexPath:indexPath];
-        cell.textLabel.text = [NSString stringWithFormat:@"Lap %i", indexPath.row + 1];
-        NSNumber* time = (NSNumber*)self.laps[indexPath.row];
-        cell.textLabel.text = [CRStopwatchViewCell stringFromTimeInterval:time.doubleValue];
         return cell;
     }
 }
@@ -154,13 +164,15 @@
 - (void)stopWatchShouldResetTiming:(CRStopwatchControlCell*)control
 {
     self.runTime = 0;
+    self.lapRunTime = 0;
     [self clearLaps];
-    [[self getStopwatchView] updateTimeWithTimesInterval:self.runTime];
+    [[self getStopwatchView] updateWithTimeInterval:self.runTime
+                                withLapTimeInterval:self.lapRunTime];
 }
 
 - (void)stopWatchShouldAddLap:(CRStopwatchControlCell*)control
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
 		[self addLap];
     });
 }

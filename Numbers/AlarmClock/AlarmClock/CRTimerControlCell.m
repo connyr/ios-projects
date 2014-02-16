@@ -19,9 +19,8 @@
 
 @implementation CRTimerControlCell
 
-- (void)layoutSubviews
+- (void)awakeFromNib
 {
-    [super layoutSubviews];
     [self styleButtons];
     [self reset];
 }
@@ -40,6 +39,12 @@
 
 - (void)styleButtons
 {
+
+    [self.leftButton setTitle:@""
+                     forState:UIControlStateNormal];
+    [self.rightButton setTitle:@""
+                      forState:UIControlStateNormal];
+
     CGPoint center = [self leftButtonCenter];
 
     self.leftButton = [self resizeButton:self.leftButton
@@ -91,23 +96,13 @@
 
 - (UIButton*)resizeButton:(UIButton*)button AtCenter:(CGPoint)center
 {
-    [button removeFromSuperview];
-    button = [UIButton buttonWithType:UIButtonTypeCustom];
-
-    NSInteger size = self.contentView.frame.size.height / 2;
-
-    [button setFrame:CGRectMake(0,
-                                0,
-                                size,
-                                size)];
     [button setCenter:center];
 
     [button setBackgroundColor:[UIColor whiteColor]];
 
     [button.layer setMasksToBounds:YES];
     [button.layer setBorderWidth:1];
-    [button.layer setCornerRadius:size / 2];
-    [self.contentView addSubview:button];
+    [button.layer setCornerRadius:button.frame.size.width / 2];
 
     return button;
 }

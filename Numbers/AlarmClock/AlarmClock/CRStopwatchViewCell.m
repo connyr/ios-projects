@@ -37,26 +37,24 @@
 
 - (void)awakeFromNib
 {
-    [self setupTimeLabel];
     self.dateFormatter = [[NSDateFormatter alloc] init];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self updateWithTimeInterval:0
+             withLapTimeInterval:0];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
 }
 
-- (void)setupTimeLabel
-{
-    [self.timeLabel setFrame:self.contentView.bounds];
-    [self.timeLabel setTextAlignment:NSTextAlignmentCenter];
-    UIFont* font = [UIFont systemFontOfSize:40];
-    [self.timeLabel setFont:font];
-    [self updateTimeWithTimesInterval:0];
-}
-
-- (void)updateTimeWithTimesInterval:(NSTimeInterval)timePassed;
+- (void)updateWithTimeInterval:(NSTimeInterval)timePassed withLapTimeInterval:(NSTimeInterval)lapTimePassed;
 {
     self.timeLabel.text = [CRStopwatchViewCell stringFromTimeInterval:timePassed];
+    self.lapTimeLabel.text = [CRStopwatchViewCell stringFromTimeInterval:lapTimePassed];
 }
 
 @end

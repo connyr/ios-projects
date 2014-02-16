@@ -51,11 +51,16 @@
 - (void)scheduleCountDown
 {
     self.isActive = YES;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                  target:self
-                                                selector:@selector(countDown)
-                                                userInfo:nil
-                                                 repeats:YES];
+    self.timer = [NSTimer timerWithTimeInterval:1.0
+                                         target:self
+                                       selector:@selector(countDown)
+                                       userInfo:nil
+                                        repeats:YES];
+    NSRunLoop* runloop = [NSRunLoop currentRunLoop];
+    [runloop addTimer:self.timer
+              forMode:NSRunLoopCommonModes];
+    [runloop addTimer:self.timer
+              forMode:UITrackingRunLoopMode];
 }
 
 - (void)stopCountDown

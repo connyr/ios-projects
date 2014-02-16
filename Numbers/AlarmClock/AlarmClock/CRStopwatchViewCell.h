@@ -11,8 +11,9 @@
 @interface CRStopwatchViewCell : UITableViewCell
 
 @property(weak, nonatomic) IBOutlet UILabel* timeLabel;
+@property(weak, nonatomic) IBOutlet UILabel* lapTimeLabel;
 
-- (void)updateTimeWithTimesInterval:(NSTimeInterval)timePassed;
+- (void)updateWithTimeInterval:(NSTimeInterval)timePassed withLapTimeInterval:(NSTimeInterval)lapTimePassed;
 + (NSString*)stringFromTimeInterval:(NSTimeInterval)time;
 
 @end
