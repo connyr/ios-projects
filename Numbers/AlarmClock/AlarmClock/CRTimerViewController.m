@@ -15,6 +15,7 @@
 
 @property(strong, nonatomic) NSTimer* timer;
 @property(nonatomic) NSTimeInterval currentTimeInterval;
+@property(nonatomic) NSDate* lastTimeStamp;
 @property(nonatomic, strong) AVAudioPlayer* audioPlayer;
 @property(weak, nonatomic) IBOutlet UITableView* tableView;
 
@@ -51,6 +52,7 @@
 - (void)scheduleCountDown
 {
     self.isActive = YES;
+    self.lastTimeStamp = [NSDate date];
     self.timer = [NSTimer timerWithTimeInterval:1.0
                                          target:self
                                        selector:@selector(countDown)
@@ -111,18 +113,30 @@
 - (void)updateInBackgroundPerSecond
 {
     if (self.isActive) {
-        [self countDown];
+        //[self countDown];
+        NSDate* currentTime = [NSDate date];
+        NSTimeInterval timePassedSinceLastCall = currentTime.timeIntervalSince1970 - self.lastTimeStamp.timeIntervalSince1970;
+        self.currentTimeInterval -= timePassedSinceLastCall;
+        self.lastTimeStamp = currentTime;
+
+        [self validateTimer];
     }
 }
 
 - (void)countDown
 {
+    self.lastTimeStamp = [NSDate date];
+    self.currentTimeInterval--;
+
+    [self validateTimer];
+}
+
+- (void)validateTimer
+{
     if (self.currentTimeInterval < 1) {
         [self.timer invalidate];
         [self countDownFinished];
     } else {
-        self.currentTimeInterval--;
-
         dispatch_async(dispatch_get_main_queue(), ^(void) {
 			[[self getTimerView] updateTimerWithTimeInterval:self.currentTimeInterval];
         });
