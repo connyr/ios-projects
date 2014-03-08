@@ -14,22 +14,13 @@
 
 @implementation CRWalker
 
-- (void)walk
+- (CGPoint)walk
 {
-    NSInteger x = self.pos.x;
-    NSInteger y = self.pos.y;
-    NSInteger direction = arc4random_uniform(4);
-    if (direction == 0) {
-        x++;
-    } else if (direction == 1) {
-        x--;
-    } else if (direction == 2) {
-        y++;
-    } else {
-        y--;
-    }
+    NSInteger x = arc4random_uniform(3) - 1;
+    NSInteger y = arc4random_uniform(3) - 1;
 
-    self.pos = CGPointMake(x, y);
+    self.pos = CGPointMake(self.pos.x + x, self.pos.y + y);
+    return CGPointMake(x, y);
 }
 
 @end

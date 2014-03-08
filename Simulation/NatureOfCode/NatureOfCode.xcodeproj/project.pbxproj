@@ -22,6 +22,7 @@
 		F0506C9C18CB4804005B0BFC /* CRWalker.m in Sources */ = {isa = PBXBuildFile; fileRef = F0506C9B18CB4804005B0BFC /* CRWalker.m */; };
 		F0506C9F18CB495C005B0BFC /* CRWalkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0506C9E18CB495C005B0BFC /* CRWalkerViewController.m */; };
 		F0506CA218CB4AB5005B0BFC /* Storyboard_iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0506CA118CB4AB5005B0BFC /* Storyboard_iphone.storyboard */; };
+		F0506CA818CB5BD9005B0BFC /* CRWalkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0506CA718CB5BD9005B0BFC /* CRWalkerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		F0506C9D18CB495B005B0BFC /* CRWalkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRWalkerViewController.h; sourceTree = "<group>"; };
 		F0506C9E18CB495C005B0BFC /* CRWalkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRWalkerViewController.m; sourceTree = "<group>"; };
 		F0506CA118CB4AB5005B0BFC /* Storyboard_iphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iphone.storyboard; sourceTree = "<group>"; };
+		F0506CA618CB5BD9005B0BFC /* CRWalkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRWalkerView.h; sourceTree = "<group>"; };
+		F0506CA718CB5BD9005B0BFC /* CRWalkerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRWalkerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,7 @@
 		F0506C5F18CB47E7005B0BFC = {
 			isa = PBXGroup;
 			children = (
+				F0506CA118CB4AB5005B0BFC /* Storyboard_iphone.storyboard */,
 				F0506CA018CB4965005B0BFC /* Walker */,
 				F0506C7118CB47E7005B0BFC /* NatureOfCode */,
 				F0506C8A18CB47E8005B0BFC /* NatureOfCodeTests */,
@@ -158,9 +162,10 @@
 			children = (
 				F0506C9A18CB4804005B0BFC /* CRWalker.h */,
 				F0506C9B18CB4804005B0BFC /* CRWalker.m */,
+				F0506CA618CB5BD9005B0BFC /* CRWalkerView.h */,
+				F0506CA718CB5BD9005B0BFC /* CRWalkerView.m */,
 				F0506C9D18CB495B005B0BFC /* CRWalkerViewController.h */,
 				F0506C9E18CB495C005B0BFC /* CRWalkerViewController.m */,
-				F0506CA118CB4AB5005B0BFC /* Storyboard_iphone.storyboard */,
 			);
 			name = Walker;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				F0506C7818CB47E7005B0BFC /* main.m in Sources */,
 				F0506C9F18CB495C005B0BFC /* CRWalkerViewController.m in Sources */,
 				F0506C7C18CB47E8005B0BFC /* CRAppDelegate.m in Sources */,
+				F0506CA818CB5BD9005B0BFC /* CRWalkerView.m in Sources */,
 				F0506C9C18CB4804005B0BFC /* CRWalker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

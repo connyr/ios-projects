@@ -1,16 +1,15 @@
 //
-//  CRWalker.h
+//  CRWalkerView.h
 //  NatureOfCode
 //
 //  Created by Cornelia Rehbein on 08/03/14.
 //  Copyright (c) 2014 Cornelia Rehbein. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface CRWalker : NSObject
+@interface CRWalkerView : UIView
 
-@property(nonatomic) CGPoint pos;
-- (CGPoint)walk;
+@property(nonatomic) CGPoint direction;
 
 @end

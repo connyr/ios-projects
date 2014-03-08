@@ -48,13 +48,19 @@
 - (void)step
 {
     NSLog(@"stepping");
-    [self.walkerModel walk];
+    CGPoint direction = [self.walkerModel walk];
+    // ignore direction for now?
     [self updateWalkerView];
+    [self showDirection:direction];
 }
 
 - (void)updateWalkerView
 {
     [self.walkerView setCenter:self.walkerModel.pos];
+}
+
+- (void)showDirection:(CGPoint)direction
+{
 }
 
 - (void)didReceiveMemoryWarning
