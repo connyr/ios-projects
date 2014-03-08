@@ -1,13 +1,12 @@
 //
 //  CRAppDelegate.m
-//  AlarmClock
+//  NatureOfCode
 //
-//  Created by Cornelia Rehbein on 12/02/14.
+//  Created by Cornelia Rehbein on 08/03/14.
 //  Copyright (c) 2014 Cornelia Rehbein. All rights reserved.
 //
-#import "CRAppDelegate.h"
 
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks" // for run timers in background method. Warning can be safely ignored
+#import "CRAppDelegate.h"
 
 @implementation CRAppDelegate
 
@@ -18,12 +17,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-    self.mainController = (UITabBarController*)[[UIStoryboard storyboardWithName:@"Storyboard"
-                                                                          bundle:nil] instantiateInitialViewController];
-    if (self.mainController) {
-        self.window.rootViewController = self.mainController;
-    }
-
+    UIViewController* rootViewController = [
+            [UIStoryboard storyboardWithName:@"Storyboard_iphone"
+                                      bundle:nil] instantiateInitialViewController];
+    self.window.rootViewController = rootViewController;
     return YES;
 }
 
@@ -35,11 +32,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
-    //    UIApplication* app = [UIApplication sharedApplication];
-    //
-    //    __block UIBackgroundTaskIdentifier backgroundTask = [app beginBackgroundTaskWithExpirationHandler:^{
-    //        [app endBackgroundTask:backgroundTask];
-    //        backgroundTask = UIBackgroundTaskInvalid; }];
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication*)application

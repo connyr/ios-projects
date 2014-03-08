@@ -273,6 +273,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Cornelia Rehbein";
 				TargetAttributes = {
+					F0563F5B18AC2C03000334BE = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					F0563F7618AC2C03000334BE = {
 						TestTargetID = F0563F5B18AC2C03000334BE;
 					};
