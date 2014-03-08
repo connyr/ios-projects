@@ -32,6 +32,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.walkerModel = [[CRWalker alloc] init];
+    [self.walkerModel setPos:CGPointMake(self.view.bounds.size.width / 2,
+                                         self.view.bounds.size.height / 2)];
+    [self updateWalkerView];
+
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2
                                                   target:self
                                                 selector:@selector(step)
@@ -42,6 +48,13 @@
 - (void)step
 {
     NSLog(@"stepping");
+    [self.walkerModel walk];
+    [self updateWalkerView];
+}
+
+- (void)updateWalkerView
+{
+    [self.walkerView setCenter:self.walkerModel.pos];
 }
 
 - (void)didReceiveMemoryWarning

@@ -10,4 +10,7 @@
 
 @interface CRWalker : NSObject
 
+@property(nonatomic) CGPoint pos;
+- (void)walk;
+
 @end

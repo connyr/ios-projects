@@ -10,11 +10,26 @@
 
 @interface CRWalker ()
 
-@property(nonatomic) NSInteger x;
-@property(nonatomic) NSInteger y;
-
 @end
 
 @implementation CRWalker
+
+- (void)walk
+{
+    NSInteger x = self.pos.x;
+    NSInteger y = self.pos.y;
+    NSInteger direction = arc4random_uniform(4);
+    if (direction == 0) {
+        x++;
+    } else if (direction == 1) {
+        x--;
+    } else if (direction == 2) {
+        y++;
+    } else {
+        y--;
+    }
+
+    self.pos = CGPointMake(x, y);
+}
 
 @end
