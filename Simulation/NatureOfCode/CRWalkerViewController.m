@@ -8,17 +8,19 @@
 
 #import "CRWalkerViewController.h"
 #import "CRWalker.h"
+#import "CRWalkerView.h"
 
 @interface CRWalkerViewController ()
 
 @property(nonatomic, strong) CRWalker* walkerModel;
 @property(nonatomic, strong) NSTimer* timer;
 
-@property(nonatomic, weak) IBOutlet UIView* walkerView;
+@property(nonatomic, weak) IBOutlet CRWalkerView* walkerView;
 
 @end
 
 @implementation CRWalkerViewController
+
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil
@@ -36,9 +38,9 @@
     self.walkerModel = [[CRWalker alloc] init];
     [self.walkerModel setPos:CGPointMake(self.view.bounds.size.width / 2,
                                          self.view.bounds.size.height / 2)];
-    [self updateWalkerView];
+    [self updateWalkerViewWithDirection:CGPointZero];
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2
                                                   target:self
                                                 selector:@selector(step)
                                                 userInfo:nil
@@ -50,12 +52,12 @@
     NSLog(@"stepping");
     CGPoint direction = [self.walkerModel walk];
     // ignore direction for now?
-    [self updateWalkerView];
-    [self showDirection:direction];
+    [self updateWalkerViewWithDirection:direction];
 }
 
-- (void)updateWalkerView
+- (void)updateWalkerViewWithDirection:(CGPoint)direction
 {
+    [self.walkerView setDirection:direction];
     [self.walkerView setCenter:self.walkerModel.pos];
 }
 
