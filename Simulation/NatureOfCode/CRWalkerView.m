@@ -43,10 +43,6 @@
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
 
-    CGRect ellipseBounds = CGRectInset(rect, rect.size.width / 3, rect.size.width / 3);
-    CGContextFillEllipseInRect(context, ellipseBounds);
-    CGContextStrokeRect(context, rect);
-
     CGFloat normalizedXDirection = (self.direction.x + 1) / 2;
     CGFloat normalizedYDirection = (self.direction.y + 1) / 2;
 
@@ -54,6 +50,10 @@
     CGContextMoveToPoint(context, outerContactPoint.x, outerContactPoint.y);
     CGContextAddLineToPoint(context, rect.size.width / 2, rect.size.height / 2);
     CGContextStrokePath(context);
+
+    CGRect ellipseBounds = CGRectInset(rect, rect.size.width / 3, rect.size.width / 3);
+    CGContextFillEllipseInRect(context, ellipseBounds);
+    CGContextStrokeRect(context, rect);
 
     // Drawing code
 }

@@ -40,7 +40,7 @@
                                          self.view.bounds.size.height / 2)];
     [self updateWalkerViewWithDirection:CGPointZero];
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:2
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2
                                                   target:self
                                                 selector:@selector(step)
                                                 userInfo:nil
@@ -58,7 +58,10 @@
 - (void)updateWalkerViewWithDirection:(CGPoint)direction
 {
     [self.walkerView setDirection:direction];
-    [self.walkerView setCenter:self.walkerModel.pos];
+    [UIView animateWithDuration:0.2
+                     animations:^{
+		[self.walkerView setCenter:self.walkerModel.pos];
+                     }];
 }
 
 - (void)showDirection:(CGPoint)direction
