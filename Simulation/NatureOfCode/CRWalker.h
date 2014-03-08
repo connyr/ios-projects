@@ -11,6 +11,9 @@
 @interface CRWalker : NSObject
 
 @property(nonatomic) CGPoint pos;
+@property(nonatomic) NSInteger walkRange;
+
 - (CGPoint)walk;
+- (CGPoint)walk9Directions;
 
 @end
