@@ -18,6 +18,12 @@
 
 @property(weak, nonatomic) IBOutlet UILabel* resultNumerator;
 @property(weak, nonatomic) IBOutlet UILabel* resultDenominator;
+@property (weak, nonatomic) IBOutlet UIButton *plusButton;
+@property (weak, nonatomic) IBOutlet UIButton *minusButton;
+@property (weak, nonatomic) IBOutlet UIButton *divideButton;
+@property (weak, nonatomic) IBOutlet UIButton *multiplyButton;
+@property (weak, nonatomic) IBOutlet UIButton *leftEditButton;
+@property (weak, nonatomic) IBOutlet UIButton *rightEditButton;
 
 - (IBAction)addFractions:(UIButton*)sender;
 - (IBAction)subtractFractions:(UIButton*)sender;

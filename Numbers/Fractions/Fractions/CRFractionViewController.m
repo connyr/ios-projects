@@ -33,6 +33,7 @@
     self.resultNumerator.text = @"";
 
     [self updateFractionLabels];
+    [self setupButtons];
     // Do any additional setup after loading the view.
 }
 
@@ -112,6 +113,15 @@
     textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 
     [inputDialog show];
+}
+
+- (void)setupButtons{
+    [self.plusButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [self.minusButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [self.multiplyButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [self.divideButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [self.leftEditButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [self.rightEditButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
 }
 
 - (void)parseFractionInput:(NSString*)inputText
