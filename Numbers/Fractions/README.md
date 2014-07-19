@@ -3,7 +3,6 @@ Fractions
  + Add/Subtract/Multiply/Divide Fractions
  + decimals to fractions, fractions to decimals, gcd, simplifying
 
-![Fractions Screen](images/fraction_0.png)
-![Fractions Screen](images/fraction_1.png)
-
+<img src="images/fraction_0.png" alt="Fraction Start Screen" style="width: 320px;"/>
+<img src="images/fraction_1.png" alt="Fraction Start Screen" style="width: 320px;"/>
 
