@@ -4,7 +4,7 @@ Timer
  + Start, Stop, Pause, Resume
  + NSTimer, Concurrency, UILocalNotification, NSTimeInterval, UIDatePicker
 
-AlarmClock
+Stopwatch
 -------------
  + Laps, Timetracking
  + Nested UITableView
