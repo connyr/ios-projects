@@ -53,7 +53,7 @@
                                       reuseIdentifier:@"LapDetailCell"];
     }
     cell.textLabel.text = self.laps[indexPath.row];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Lap %i", indexPath.row + 1];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Lap %li", indexPath.row + 1];
 
     return cell;
 }
